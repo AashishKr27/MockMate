@@ -11,10 +11,12 @@ import {
 } from "@/components/ui/form";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
+import FormField from "./FormField";
 
-const authFormSchema = ( type: FormType ) => {
+const authFormSchema = (type: FormType) => {
   return z.object({
-    name: type === "sign-up" ? z.string().min(3) :  z.string().optional(),
+    name: type === "sign-up" ? z.string().min(3) : z.string().optional(),
     email: z.string().email(),
     password: z.string().min(3),
   })
@@ -34,16 +36,23 @@ const AuthForm = ({ type }: { type: FormType }) => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    try {
+      if (type === 'sign-up') {
+        console.log("Sign Up", values);
+      } else {
+        console.log("Sign In", values);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(`There was an error: ${error}`)
+    }
   }
 
   const isSignIn = type === "sign-in";
 
   return (
-    <div className="card-border lg:min-w-[566px]">
-      <div className="flex flex-col items-center gap-6 card py-14 px-10">
+    <div className="card-border lg:min-w-[460px]">
+      <div className="flex flex-col items-center gap-3 card py-9 px-10">
         <div className="flex flex-row gap-2 justify-center">
           <Image
             src="/logo.svg"
@@ -56,17 +65,36 @@ const AuthForm = ({ type }: { type: FormType }) => {
         </div>
         <p className="text-xl text-primary-100">Practice job interview aith AI</p>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-full mt-4 form">
-            {!isSignIn && <p>Name</p>}
-            <p>Email</p>
-            <p>Password</p>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-full mt-4 form">
+            {!isSignIn && (
+              <FormField
+                control={form.control}
+                name="name"
+                label="Name"
+                placeholder="Name"
+              />
+            )}
+            <FormField
+              control={form.control}
+              name="email"
+              label="Email"
+              placeholder="Email"
+              type="email"
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              label="Password"
+              placeholder="Password"
+              type="password"
+            />
             <Button className="btn" type="submit">
               {isSignIn ? "Sign In" : "Create Account"}
             </Button>
           </form>
         </Form>
         <p className="text-center">
-          {isSignIn ? "No Account Yet ? " : "Already Have An Account"}
+          {isSignIn ? "No Account Yet ? " : "Already Have An Account ? "}
           <Link href={!isSignIn ? "/sign-in" : "/sign-up"} className="font-bold text-user-primary ml-1">
             {!isSignIn ? "Sign Up" : "Sign In"}
           </Link>
