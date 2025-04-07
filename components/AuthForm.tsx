@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React from "react";
 
@@ -13,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 import FormField from "./FormField";
+import { useRouter } from "next/navigation";
 
 const authFormSchema = (type: FormType) => {
   return z.object({
@@ -23,6 +25,7 @@ const authFormSchema = (type: FormType) => {
 }
 
 const AuthForm = ({ type }: { type: FormType }) => {
+  const router = useRouter();
   // 1. Define your form.
   const formSchema = authFormSchema(type);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -38,9 +41,11 @@ const AuthForm = ({ type }: { type: FormType }) => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       if (type === 'sign-up') {
-        console.log("Sign Up", values);
+        toast.success("Account Created Successfully. Please Sign In");
+        router.push("/sign-in");
       } else {
-        console.log("Sign In", values);
+        toast.success("Signed In Successfully");
+        router.push("/");
       }
     } catch (error) {
       console.log(error);
@@ -71,21 +76,21 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 control={form.control}
                 name="name"
                 label="Name"
-                placeholder="Name"
+                placeholder="Enter Your Name"
               />
             )}
             <FormField
               control={form.control}
               name="email"
               label="Email"
-              placeholder="Email"
+              placeholder="Your Email Address"
               type="email"
             />
             <FormField
               control={form.control}
               name="password"
               label="Password"
-              placeholder="Password"
+              placeholder="Enter Your Password"
               type="password"
             />
             <Button className="btn" type="submit">

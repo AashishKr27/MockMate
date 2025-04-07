@@ -18,9 +18,14 @@ const FormField = <T extends FieldValues>({ control, name, label, placeholder, t
         control={control}
         render={({ field }) => (
             <FormItem>
-                <FormLabel className='label text-[16px]'>{label}{" "}{":"}</FormLabel>
+                <FormLabel className='label text-white text-[16px]'>{label}{" "}{":"}</FormLabel>
                 <FormControl>
-                    <Input className='input' type={type} placeholder= {``} {...field} />
+                    <Input
+                        className='input'
+                        type={type}
+                        placeholder={placeholder}
+                        {...field}
+                    />
                 </FormControl>
                 <FormMessage />
             </FormItem>
