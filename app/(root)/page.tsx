@@ -21,6 +21,8 @@ const page = async () => {
     getLatestInterviews({ userId: user?.id! }),
   ]);
 
+  // console.log(userInterviews, allInterview);
+
   const hasPastInterviews = userInterviews?.length! > 0;
   const hasUpcomingInterviews = allInterview?.length! > 0;
 
