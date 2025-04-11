@@ -124,7 +124,7 @@ export async function getLatestInterviews(
     .collection("interviews")
     .orderBy("createdAt", "desc")
     .where("finalized", "==", true)
-    .where("userId", "!=", userId)
+    .where("userid", "!=", userId)
     .limit(limit)
     .get();
 
