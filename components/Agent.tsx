@@ -76,7 +76,7 @@ const Agent = ({
     };
     // TODO: Implement feedback generation logic here
     if (success && id) {
-      router.push(`/interview/${interviewId}/feedback`);
+      router.push("/");
     } else {
       console.error("Failed to generate feedback.");
       router.push("/");

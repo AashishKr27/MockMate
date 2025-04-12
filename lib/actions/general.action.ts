@@ -38,18 +38,14 @@ export async function getLatestInterviews(
   })) as Interview[];
 }
 
-export async function getInterviewById(
-  id: string
-): Promise<Interview | null> {
+export async function getInterviewById(id: string): Promise<Interview | null> {
   try {
-    const interview = await db
-      .collection("interviews")
-      .doc(id)
-      .get();
+    const interview = await db.collection("interviews").doc(id).get();
 
-    return interview.data() as Interview  | null;
+    return interview.data() as Interview | null;
   } catch (error) {
     console.error("Error fetching interviews:", error);
     return null;
   }
 }
+
