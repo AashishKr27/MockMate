@@ -17,11 +17,12 @@ MockMate is an AI-driven platform designed to help job seekers prepare for inter
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: Next.js, React, Tailwind CSS
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **Authentication**: Firebase Authentication
-- **Hosting**: Vercel
+- **Framework**: [Next.js](https://nextjs.org/) (with TypeScript)
+- **UI**: React, Tailwind CSS
+- **Authentication**: Firebase Auth
+- **Database/Storage**: Firebase (Firestore or Realtime DB)
+- **Deployment**: Vercel
+- **Other Tools**: Gemini AI API (for interview generation & feedback)
 
 ---
 
