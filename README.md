@@ -2,7 +2,7 @@
 
 **AI-Powered Mock Interview Platform**
 
-MockMate is an AI-driven platform designed to help job seekers prepare for interviews by simulating real-world scenarios.\nIt offers tailored interview questions, real-time feedback, and performance analytics to enhance your interview skills.
+MockMate is an AI-driven platform designed to help job seekers prepare for interviews by simulating real-world scenarios.<br>It offers tailored interview questions, real-time feedback, and performance analytics to enhance your interview skills.
 
 ---
 
@@ -45,12 +45,12 @@ yarn install
 Create a `.env.local` file and add:
 
 ```env
-NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+FIREBASE_PROJECT_ID = your_firebase_prject_id
+FIREBASE_PRIVATE_KEY = your_firebase_private_key
+FIREBASE_CLIENT_EMAIL = your_firebase_client_email
+GOOGLE_GENERATIVE_AI_API_KEY = your_google_ai_api_key
+NEXT_PUBLIC_VAPI_WEB_TOKEN = your_vapi_web_token
+NEXT_PUBLIC_VAPI_WORKFLOW_ID = your_vapi_workflow_id
 ```
 
 4. **Run the development server**
