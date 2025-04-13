@@ -2,6 +2,7 @@
 
 import { db, auth } from "@/firebase/admin";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const ONE_WEEK = 60 * 60 * 24 * 7; // 7 days in milliseconds
 
@@ -94,4 +95,18 @@ export async function getCurrentUser(): Promise<User | null> {
 export async function isAuthenticated() {
   const user = await getCurrentUser();
   return !!user; // Convert to boolean
+}
+
+export async function signOut() {
+  const cookieStore = cookies();
+
+  // Clear the session cookie by setting it with a past expiration date
+  (await cookieStore).set("session", "", {
+    maxAge: 0,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    sameSite: "lax",
+  });
+  redirect("/sign-in"); // Redirect to sign-in page after signing out
 }
